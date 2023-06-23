@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -58,8 +59,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     def appcompat_version = "1.6.1"
-    def room_version = "2.5.1"
+    def room_version = "2.5.2"
     def lifecycle_version = "2.6.1"
+    def hilt_version = "2.44"
+    def fragment_version = "1.5.5"
+
+    // Fragment
+    implementation("androidx.fragment:fragment-ktx:$fragment_version")
 
     //appCompat
     implementation("androidx.appcompat:appcompat:$appcompat_version")
@@ -81,4 +87,20 @@ dependencies {
     // optional - Test helpers
     testImplementation("androidx.room:room-testing:$room_version")
     androidTestImplementation("androidx.room:room-testing:$room_version")
+
+    //Hilt
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
+
+    // For instrumentation tests
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    androidTestAnnotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // For local unit tests
+    testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    testAnnotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

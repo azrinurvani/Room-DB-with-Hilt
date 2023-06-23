@@ -1,23 +1,17 @@
 package com.azrinurvani.mobile.roomdb
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.azrinurvani.mobile.roomdb.data.ViewModelFactory
-import com.azrinurvani.mobile.roomdb.data.WordDatabase
-import com.azrinurvani.mobile.roomdb.data.WordRepository
-import com.azrinurvani.mobile.roomdb.databinding.ActivityMainBinding
 
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+
+import com.azrinurvani.mobile.roomdb.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel : MainViewModel by lazy {
-        ViewModelProvider(
-            this,
-            ViewModelFactory(WordRepository(WordDatabase.getDatabaseInstance(this)))
-        )[MainViewModel::class.java]
-    }
-
+    private val viewModel : MainViewModel by viewModels<MainViewModel>()
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

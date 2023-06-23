@@ -5,9 +5,12 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.azrinurvani.mobile.roomdb.data.WordRepository
 import com.azrinurvani.mobile.roomdb.data.models.Word
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val wordRepository: WordRepository) : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val wordRepository: WordRepository) : ViewModel() {
 
     fun getAllWords() = wordRepository.getAllWords().asLiveData(viewModelScope.coroutineContext)
 

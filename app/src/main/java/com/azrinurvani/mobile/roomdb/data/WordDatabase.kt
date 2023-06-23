@@ -15,26 +15,27 @@ abstract class WordDatabase : RoomDatabase() {
 
     abstract fun wordDao() : WordDao
 
+/*TODO - Move to DI module*/
 
-    companion object{
-        private fun buildDatabase(context : Context) : WordDatabase {
-            return Room.databaseBuilder(
-                context,
-                WordDatabase::class.java,
-                "word.db"
-            ).build()
-        }
-
-        @Volatile
-        private var INSTANCE : WordDatabase? = null
-
-        fun getDatabaseInstance(context: Context) : WordDatabase{
-            if (INSTANCE == null){
-                INSTANCE = buildDatabase(context)
-            }
-            return INSTANCE as WordDatabase
-        }
-
-    }
+//    companion object{
+//        private fun buildDatabase(context : Context) : WordDatabase {
+//            return Room.databaseBuilder(
+//                context,
+//                WordDatabase::class.java,
+//                "word.db"
+//            ).build()
+//        }
+//
+//        @Volatile
+//        private var INSTANCE : WordDatabase? = null
+//
+//        fun getDatabaseInstance(context: Context) : WordDatabase{
+//            if (INSTANCE == null){
+//                INSTANCE = buildDatabase(context)
+//            }
+//            return INSTANCE as WordDatabase
+//        }
+//
+//    }
 
 }

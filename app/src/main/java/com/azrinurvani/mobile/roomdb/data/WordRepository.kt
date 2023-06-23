@@ -1,13 +1,15 @@
 package com.azrinurvani.mobile.roomdb.data
 
+import com.azrinurvani.mobile.roomdb.data.daos.WordDao
 import com.azrinurvani.mobile.roomdb.data.models.Word
+import javax.inject.Inject
 
-class WordRepository (private val wordDatabase: WordDatabase){
+class WordRepository @Inject constructor(private val wordDao: WordDao){
 
     suspend fun insertWord(word : Word){
-        wordDatabase.wordDao().insertWord(word)
+        wordDao.insertWord(word)
     }
 
-    fun getAllWords() = wordDatabase.wordDao().getAllWords()
+    fun getAllWords() = wordDao.getAllWords()
 
 }
