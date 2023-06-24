@@ -3,7 +3,9 @@ package com.azrinurvani.mobile.roomdb.di
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.azrinurvani.mobile.roomdb.data.RoomWordDataSource
 import com.azrinurvani.mobile.roomdb.data.WordDatabase
+import com.azrinurvani.mobile.roomdb.data.WordLocalDataSource
 import com.azrinurvani.mobile.roomdb.data.daos.WordDao
 import dagger.Module
 import dagger.Provides
@@ -27,5 +29,10 @@ object RoomModule {
     @Provides
     fun provideWordDao(wordDatabase: WordDatabase) : WordDao{
         return wordDatabase.wordDao()
+    }
+
+    @Provides
+    fun provideLocalWordDataSource(wordDao: WordDao): WordLocalDataSource{
+        return RoomWordDataSource(wordDao)
     }
 }
