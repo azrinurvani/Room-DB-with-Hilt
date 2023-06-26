@@ -27,5 +27,11 @@ interface WordDao {
     @Query("SELECT * FROM word_table")
     fun getAllWords() : Flow<List<Word>>
 
+    @Query("SELECT * FROM word_table")
+    fun getAllWordsTest() : List<Word>
+
+    @Query("SELECT * FROM word_table ORDER BY word ASC")
+    fun getAlphabeticallySort() : List<Word>
+
 
 }
