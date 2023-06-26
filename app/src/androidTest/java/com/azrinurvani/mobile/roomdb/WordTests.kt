@@ -42,8 +42,8 @@ class WordTests {
     @Test
     fun afterInsertingManyWord_ResultMustBeSort()  = runBlocking {
         wordDao.insertWord(Word(word="abc"))
-        wordDao.insertWord(Word(word="bbc"))
         wordDao.insertWord(Word(word="dddeq"))
+        wordDao.insertWord(Word(word="bbc"))
         wordDao.insertWord(Word(word="qeqeq"))
 
         val words = wordDao.getAlphabeticallySort()

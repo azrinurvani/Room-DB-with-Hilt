@@ -1,15 +1,22 @@
 package com.azrinurvani.mobile.roomdb.data
 
-import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.azrinurvani.mobile.roomdb.data.converters.RoomConverters
 import com.azrinurvani.mobile.roomdb.data.daos.WordDao
+import com.azrinurvani.mobile.roomdb.data.migrations.Migration1To2
 import com.azrinurvani.mobile.roomdb.data.models.Word
 
-@Database(entities = [Word::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Word::class],
+    version = 3,
+    exportSchema = true,
+    autoMigrations = [
+        AutoMigration(from = 1, to = 2, spec = Migration1To2::class)
+    ]
+)
 @TypeConverters(RoomConverters::class)
 abstract class WordDatabase : RoomDatabase() {
 
